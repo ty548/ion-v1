@@ -1,0 +1,190 @@
+/* --- Global Styles and CSS Variables --- */
+:root {
+    --primary: #4F46E5;
+    --secondary: #14B8A6;
+    --accent: #EC4899;
+    --bg-dark: #111827;
+    --bg-light: #F9FAFB;
+    --text-main: #F9FAFB;
+    --text-dark: #1F2937;
+    --glass-bg: rgba(31, 41, 55, 0.5);
+    --glass-border: rgba(55, 65, 81, 0.5);
+}
+
+body {
+    font-family: 'Pretendard', 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Pretendard', 'Inter', sans-serif;
+    font-weight: 700;
+}
+
+/* --- Custom Utility Classes --- */
+.glassmorphism {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.section-light {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+.section-dark {
+     background-color: var(--bg-dark);
+     color: var(--text-main);
+}
+
+.gradient-text {
+    background-image: linear-gradient(to right, var(--primary), var(--secondary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* --- Animations --- */
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] summary .plus-icon { transform: rotate(45deg); }
+.plus-icon { transition: transform 0.3s ease-in-out; }
+
+#hero-bg-animation canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.loading-spinner {
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border-top: 3px solid var(--primary);
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Modals --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--bg-dark);
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(31, 41, 55, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4338CA;
+}
+
+/* --- AI Chat Simulation --- */
+.chat-bubble {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+.chat-bubble.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.chat-bubble-user {
+    background-color: var(--primary);
+    color: white;
+}
+.chat-bubble-ai {
+    background-color: #374151;
+    color: var(--text-main);
+}
+.typing-indicator span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #9CA3AF;
+    animation: typing 1.4s infinite both;
+}
+.typing-indicator span:nth-child(1) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(2) { animation-delay: 0.4s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.6s; }
+@keyframes typing {
+    0% { transform: translateY(0); }
+    20% { transform: translateY(-4px); }
+    40% { transform: translateY(0); }
+}
