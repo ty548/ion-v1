@@ -4,10 +4,6 @@
 
 import { handleUpload } from '@vercel/blob/server';
 
-export const config = {
-  runtime: 'edge',
-};
-
 // POST 요청이 들어왔을 때 실행될 함수
 export default async function POST(request) {
   // body에서 업로드할 파일 정보를 추출합니다.
